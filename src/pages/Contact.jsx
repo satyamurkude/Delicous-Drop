@@ -27,7 +27,7 @@ const Contact = () => {
 <li><span>To Learn About Entrepreneurship</span><br></br></li>
 </ol>
 <br></br>
-<img className='h-40 w-40 border border-black' src="./public/myimg.png" alt="pic"/>
+<img className='h-40 w-40 border border-black' src="https://media.licdn.com/dms/image/D5603AQFxwumMToFGYA/profile-displayphoto-shrink_800_800/0/1698640734427?e=1709164800&v=beta&t=tXpO0kYRGb0f2r92VR1uJO_X5_eJM0XZgGwg1rLUwmU" alt="pic"/>
 
         <div className='my-4 space-y-2'>
           <h3 className='text-lg font-semibold'>Connect with me</h3>
