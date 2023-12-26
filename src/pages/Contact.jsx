@@ -22,7 +22,7 @@ const Contact = () => {
 <br></br>
 <p>Apart from coding, some other activities that I love to do!</p><br></br>
 <ol>
-<li><span>Love to dive deep in concepts of coding</span><br></br></li>
+
 <li><span>Love to play(Piano,Flute,Harmonium)</span><br></br></li>
 <li><span>To Learn About Entrepreneurship</span><br></br></li>
 </ol>
