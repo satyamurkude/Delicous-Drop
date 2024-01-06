@@ -21,10 +21,11 @@ const useRestaurants = (url) => {
       const { data } = await axios.post(url, address);
 
       if (data?.data) {
+        console.log("hhhh",data);
         setBanners(
           data?.data?.cards.filter(
             (items) => items?.card?.card?.id === 'topical_banner'
-          )[0]
+          )[0] || []
         );
 
         setFoods(
@@ -47,7 +48,8 @@ const useRestaurants = (url) => {
       }
     } catch (err) {
       console.log(err.response);
-      setError(err.response);
+      setBanners([]);
+      setError(err.response || "An error occurred while fetching data");
     } finally {
       setIsLoading(false);
     }

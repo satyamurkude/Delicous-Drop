@@ -19,18 +19,27 @@ const LocationModal = () => {
 
       const res = await getLocation();
 
-      res && setisLoading(false);
+      if (res) {
+        dispatch(setAddress(res));
 
-      // set address
-      dispatch(setAddress(res));
+        const restaurants = await triggerGetRestaurants();
 
-      // close modal
+        if (restaurants && restaurants.length === 0) {
+          const defaultLocation = { mumbai: {
+            latitude: 19.0760,
+            longitude: 72.8777,
+            address: 'Mumbai, Maharashtra, India'
+          } };
+          dispatch(setAddress(defaultLocation));
+          await triggerGetRestaurants();
+        }
+      }
+
+      setisLoading(false);
       dispatch(closeLocationModal());
-
-      // trigger fetch request
-      triggerGetRestaurants();
     } catch (error) {
       console.log(error);
+      setisLoading(false);
     }
   };
 
@@ -47,7 +56,7 @@ const LocationModal = () => {
         ref={modalRef}
         className='w-[90%] flex flex-col justify-center items-center max-w-[600px] m-auto p-8 bg-white rounded-md min-h-[240px]'
       >
-        <h1 className='text-2xl font-semibold '>
+        <h1 className='text-2xl font-semibold'>
           Please provide your location
         </h1>
         <button
@@ -64,21 +73,6 @@ const LocationModal = () => {
             </p>
           )}
         </button>
-
-        {/* <p>or, enter manually</p> */}
-
-        {/* <div className='flex items-center gap-4 w-full max-w-[360px]'>
-          <input
-            className='w-full grow bg-gray-50 my-4 p-2 border border-gray-400 rounded-md'
-            type='text'
-            placeholder='Delhi'
-            name='location'
-            id='location'
-          />
-          <button className='p-2 px-4 bg-orange-500 text-white rounded-md'>
-            Save
-          </button>
-        </div> */}
       </div>
     </div>
   );
